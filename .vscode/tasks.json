@@ -12,7 +12,7 @@
 		{
 			"label": "Build and Run",
 			"type": "shell",
-			"command": "./bin/sdl_test",
+			"command": "./bin/project_nord_rogue",
 			"group": {
 				"kind": "build",
 				"isDefault": true

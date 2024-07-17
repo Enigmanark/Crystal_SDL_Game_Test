@@ -6,14 +6,16 @@ class SDLTexture
     getter height : Int32 = 0
 
     @texture = Pointer(LibSDL::Texture).null
-    @renderer = Pointer(LibSDL::Renderer).null
 
-    def initialize(@renderer : LibSDL::Renderer*)
+    def initialize()
     end
 
     def finalize()
         free()
-        @renderer = Pointer(LibSDL::Renderer).null
+    end
+
+    def get_texture()
+        return @texture
     end
 
     def free()
@@ -25,7 +27,7 @@ class SDLTexture
         end
     end
 
-    def load_from_file(path : String)
+    def load_from_file(renderer : LibSDL::Renderer*, path : String)
         free()
 
         loaded_image_surface = LibSDL.img_load(path)
@@ -33,7 +35,7 @@ class SDLTexture
             raise "Could not load image from #{path}!"
         end
 
-        @texture = LibSDL.create_texture_from_surface(@renderer, loaded_image_surface)
+        @texture = LibSDL.create_texture_from_surface(renderer, loaded_image_surface)
         if @texture == nil
             raise "Could not load texture from image surface with file #{path}!"
         end
@@ -44,13 +46,13 @@ class SDLTexture
         LibSDL.free_surface(loaded_image_surface)
     end
 
-    def render(x : Int, y : Int, source_rect : LibSDL::Rect*? = nil)
+    def render(renderer : LibSDL::Renderer*, x : Int, y : Int, source_rect : LibSDL::Rect*? = nil)
         dest_rect = LibSDL::Rect.new(x: x, y: y, w: @width, h: @height)
         if source_rect
             dest_rect.w = source_rect.value.w
             dest_rect.h = source_rect.value.h
         end
 
-        LibSDL.render_copy(@renderer, @texture, source_rect, pointerof(dest_rect))
+        LibSDL.render_copy(renderer, @texture, source_rect, pointerof(dest_rect))
       end
 end

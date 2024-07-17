@@ -1,12 +1,12 @@
-name: sdl_test
+name: project_njord_rogue
 version: 0.1.0
 
 authors:
   - Enigmanark <enigmanark@gmail.com>
 
 targets:
-  sdl_test:
-    main: src/sdl_test.cr
+  project_nord_rogue:
+    main: src/main.cr
 
 crystal: '>= 1.13.1'
 
