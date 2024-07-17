@@ -1,0 +1,19 @@
+name: sdl_test
+version: 0.1.0
+
+authors:
+  - Enigmanark <enigmanark@gmail.com>
+
+targets:
+  sdl_test:
+    main: src/sdl_test.cr
+
+crystal: '>= 1.13.1'
+
+license: MIT
+
+dependencies:
+  sdl-crystal-bindings:
+    github: hadeweka/sdl-crystal-bindings
+  perlin_noise:
+    github: redcodefinal/perlin_noise

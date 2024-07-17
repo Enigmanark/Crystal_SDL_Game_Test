@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "command": "",
+    "args": [],
+    "tasks": [
+		{
+			"label": "Build Game",
+			"type": "shell",
+			"command": "shards build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Build and Run",
+			"type": "shell",
+			"command": "./bin/sdl_test",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOn": [
+				"Build Game"
+			],
+			"problemMatcher": []
+		}
+	]
+}
